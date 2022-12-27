@@ -5,7 +5,7 @@ from stock.models import Stock
 from django.contrib import messages
 from .models import PurchaseBill, PurchaseBillDetails, PurchaseItem
 from purchase.forms import PurchaseItemFormset
-from .forms import PurchaseDetailsForm
+from .forms import PurchaseDetailsForm, PurchaseItemFormset
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     View, 
@@ -130,7 +130,8 @@ class PurchaseBillView(View):
     
 class PurchaseDeleteView(SuccessMessageMixin, DeleteView):
     model = PurchaseBill
-    success_url = '/purchase'
+    # template_name = "purchases/delete_purchase.html"
+    success_url = '/purchases'
     
     def delete(self, *args, **kwargs):
         self.object = self.get_object()
