@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     # app
     'stock',
+    'merchandiser',
     'supplier',
     'purchase',
     'sale',

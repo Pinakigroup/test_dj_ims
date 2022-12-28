@@ -5,4 +5,4 @@ from .models import Stock
 
 @admin.register(Stock)
 class StockAdmin(admin.ModelAdmin):
-    list_display = ['name', 'quantity']
+    list_display = ['category', 'name', 'quantity']

@@ -45,7 +45,7 @@ class SaleCreateView(View):
                 # calculates the total price
                 billitem.totalprice = billitem.unit_price * billitem.quantity
                 # updates quantity in stock db
-                stock.quantity -= billitem.quantity             
+                stock.quantity += billitem.quantity             
 
                 # saves bill item and stock
                 stock.save()

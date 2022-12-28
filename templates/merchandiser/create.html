@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %} 
-{% block title %}create Stock{% endblock title %} 
+{% block title %}create Merchandiser{% endblock title %} 
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
@@ -14,11 +14,11 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item">
-							<a href="#">
+							<a href="{% static 'javascript:;' %}">
 								<i class="bx bx-home-alt"></i>
 							</a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Add New Stock</li>
+						<li class="breadcrumb-item active" aria-current="page">Add New Merchandiser</li>
 					</ol>
 				</nav>
 			</div>
@@ -29,11 +29,11 @@
 						<span class="visually-hidden">Toggle Dropdown</span>
 					</button>
 					<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
+						<a class="dropdown-item" href="{% static 'javascript:;' %}">Action</a>
+						<a class="dropdown-item" href="{% static 'javascript:;' %}">Another action</a>
+						<a class="dropdown-item" href="{% static 'javascript:;' %}">Something else here</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Separated link</a>
+						<a class="dropdown-item" href="{% static 'javascript:;' %}">Separated link</a>
 					</div>
 				</div>
 			</div>
@@ -42,8 +42,8 @@
 		<div class="row">
 			<div class="col-xl-9 mx-auto">
 				<div class="ms-auto">
-					<a href="{% url 'stock_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
-						<i class="bx bx-grid-alt"></i>Stock Table
+					<a href="{% url 'merchandiser_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
+						<i class="bx bx-grid-alt"></i>Merchandiser Table
 					</a>
 				</div>
 						{% comment %} 
@@ -52,26 +52,45 @@
 				<hr/>
 				<div class="card">
 					<div class="card-body">
-						<form class="row g-3" method="POST">
+						<form method="POST">
 							{% csrf_token %}	
-
-								<div class="col-sm-12">
+							<div class="form-row">
+								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
-										{{ form.category|as_crispy_field }}
+										{{ form.office_id|as_crispy_field }}
 									</div>
 								</div><br>
-								
-								<div class="col-sm-12">
+								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
 										{{ form.name|as_crispy_field }}
 									</div>
 								</div><br>
 
-								<div class="col-sm-12">
+                                <div class="form-group col-md-12 mb-0">
 									<div class="controls">
-										{{ form.quantity|as_crispy_field }}
+										{{ form.phone|as_crispy_field }}
 									</div>
 								</div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.email|as_crispy_field }}
+									</div>
+								</div><br>
+
+								<div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.designation|as_crispy_field }}
+									</div>
+								</div><br>
+
+								<div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.joining_date|as_crispy_field }}
+									</div>
+								</div><br>
+
+							</div>
 
 							<div class="form-actions">
 								<button type="submit" class="btn btn-light">Save changes</button>
