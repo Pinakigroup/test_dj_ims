@@ -51,11 +51,54 @@ class SaleCreateView(View):
                 stock.save()
                 billitem.save()
             messages.success(request, "Sold items have been registered successfully")
-            return redirect('create')
+            return redirect('sale_read')
         form = SaleForm(request.GET or None)
         formset = SaleItemFormset(request.GET or None)
         context = {
             'form'      : form,
             'formset'   : formset,
+        }
+        return render(request, self.template_name, context)
+    
+class SaleView(ListView):
+    model = SaleBill 
+    template_name = 'sale/read.html'
+    context_object_name = 'bills'
+    ordering = ['-time']
+
+
+class SaleBillView(View):
+    model = SaleBill
+    template_name = "bill/sale_bill.html"
+    
+    def get(self, request, billno):
+        context = {
+            'bill'          : SaleBill.objects.get(billno=billno),
+            'items'         : SaleItem.objects.filter(billno=billno),
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, billno):
+        form = SaleDetailsForm(request.POST)
+        if form.is_valid():
+            billdetailsobj = SaleBillDetails.objects.get(billno=billno)
+            
+            billdetailsobj.eway = request.POST.get("eway")    
+            billdetailsobj.veh = request.POST.get("veh")
+            billdetailsobj.destination = request.POST.get("destination")
+            billdetailsobj.po = request.POST.get("po")
+            billdetailsobj.cgst = request.POST.get("cgst")
+            billdetailsobj.sgst = request.POST.get("sgst")
+            billdetailsobj.igst = request.POST.get("igst")
+            billdetailsobj.cess = request.POST.get("cess")
+            billdetailsobj.tcs = request.POST.get("tcs")
+            billdetailsobj.total = request.POST.get("total")
+
+            billdetailsobj.save()
+            messages.success(request, "Bill details have been modified successfully")
+        context = {
+            'bill'          : SaleBill.objects.get(billno=billno),
+            'items'         : SaleItem.objects.filter(billno=billno),
+            'billdetails'   : SaleBillDetails.objects.get(billno=billno),
         }
         return render(request, self.template_name, context)

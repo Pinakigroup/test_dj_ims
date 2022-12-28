@@ -5,13 +5,6 @@ from . import views
 
 urlpatterns = [
     path('create/', views.SaleCreateView.as_view(), name='create'),
-    # path('', views.StockListView.as_view(), name='stock_read'),
-    # path('new/', views.StockCreateView.as_view(), name='new'),
-    # path('<int:pk>/edit', views.StockUpdateView.as_view(), name='stock_update'),
-    
-    
-    # path('create/', views.create, name="create"),
-    # path('', views.product_read, name='product_read'),
-    # path('<int:pk>/', views.product_update, name='product_update'),
-    # path('delete/<int:pk>/', views.stock_delete, name='stock_delete'),   
+    path('', views.SaleView.as_view(), name='sale_read'),
+    path("bill/<billno>", views.SaleBillView.as_view(), name="sale_bill"),
 ]
