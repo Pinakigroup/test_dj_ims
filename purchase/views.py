@@ -17,21 +17,21 @@ from django.views.generic import (
 # Create your views here.
 
 # used to select the supplier
-class SelectSupplierView(View):
-    form_class = SelectSupplierForm
-    template_name = 'purchase/select_supplier.html'
+# class SelectSupplierView(View):
+#     form_class = SelectSupplierForm
+#     template_name = 'purchase/select_supplier.html'
 
-    def get(self, request, *args, **kwargs):                                    # loads the form page
-        form = self.form_class
-        return render(request, self.template_name, {'form': form})
+#     def get(self, request, *args, **kwargs):                                    # loads the form page
+#         form = self.form_class
+#         return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):                                   # gets selected supplier and redirects to 'PurchaseCreateView' class
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            supplierid = request.POST.get("supplier")
-            supplier = get_object_or_404(Supplier, id=supplierid)
-            return redirect('create_purchase', supplier.pk)
-        return render(request, self.template_name, {'form': form})
+#     def post(self, request, *args, **kwargs):                                   # gets selected supplier and redirects to 'PurchaseCreateView' class
+#         form = self.form_class(request.POST)
+#         if form.is_valid():
+#             supplierid = request.POST.get("supplier")
+#             supplier = get_object_or_404(Supplier, id=supplierid)
+#             return redirect('create_purchase', supplier.pk)
+#         return render(request, self.template_name, {'form': form})
     
     
 # used to generate a bill object and save items

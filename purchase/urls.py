@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('select_supplier/', views.SelectSupplierView.as_view(), name='select_supplier'),
+    # path('select_supplier/', views.SelectSupplierView.as_view(), name='select_supplier'),
     path('create_purchase/<pk>', views.PurchaseCreateView.as_view(), name='create_purchase'),  
     path('', views.PurchaseView.as_view(), name='purchases_list'),
     path("bill/<billno>", views.PurchaseBillView.as_view(), name="purchase_bill"),
